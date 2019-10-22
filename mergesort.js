@@ -17,3 +17,27 @@ function split(wholeArray) {
   return [firstHalf, secondHalf];
 }
 }
+
+
+function merge(firstArr, secondArr){
+
+  if(firstArr.length===0){
+    return secondArr;
+  }
+  else if(secondArr.length===0){
+    return firstArr;
+  }
+  else{
+    let wholeArr=[];
+    if(firstArr[0]<secondArr[0]){
+      wholeArr.push(firstArr[0]);
+      return wholeArr.concat(merge(firstArr.slice(1),secondArr))
+    }
+    else{
+      wholeArr.push(secondArr[0])
+      return wholeArr.concat(merge(secondArr.slice(1),firstArr))
+    }
+
+  }
+
+}
