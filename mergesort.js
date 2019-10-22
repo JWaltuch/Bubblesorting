@@ -26,13 +26,31 @@ function merge(firstArr, secondArr) {
     return firstArr;
   } else {
     let wholeArr = [];
-    if (firstArr[0] < secondArr[0]) {
-      wholeArr.push(firstArr[0]);
-      return wholeArr.concat(merge(firstArr.slice(1), secondArr));
-    } else {
-      wholeArr.push(secondArr[0]);
-      return wholeArr.concat(merge(secondArr.slice(1), firstArr));
+    let pointerLeft = 0;
+    let pointerRight = 0;
+    while (pointerLeft < firstArr.length && pointerRight < secondArr.length) {
+      if (firstArr[pointerLeft] < secondArr[pointerRight]) {
+        wholeArr.push(firstArr[pointerLeft]);
+        pointerLeft++;
+      } else {
+        wholeArr.push(secondArr[pointerRight]);
+        pointerRight++;
+      }
     }
+    if (pointerLeft < firstArr.length) {
+      wholeArr = wholeArr.concat(firstArr.slice(pointerLeft));
+    }
+    if (pointerRight < secondArr.length) {
+      wholeArr = wholeArr.concat(secondArr.slice(pointerRight));
+    }
+    return wholeArr;
+    // if (firstArr[0] < secondArr[0]) {
+    //   wholeArr.push(firstArr[0]);
+    //   return wholeArr.concat(merge(firstArr.slice(1), secondArr));
+    // } else {
+    //   wholeArr.push(secondArr[0]);
+    //   return wholeArr.concat(merge(secondArr.slice(1), firstArr));
+    // }
   }
 }
 
